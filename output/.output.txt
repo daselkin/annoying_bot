@@ -1,0 +1,2 @@
+Output images are based on timestamp of their creation.
+To set up on a server, make sure to modify the naming scheme in main.py
