@@ -12,9 +12,9 @@ NOUNS_FILE = 'dictionaries/good_nouns.txt'
 ADJECTIVES_FILE = 'dictionaries/good_adjectives.txt'
 CONNECTORS_FILE = 'dictionaries/connectors.txt'
 BLESSINGS_FILE = 'dictionaries/blessings.txt'
-
+ENDINGS_FILE = 'dictionaries/endings.txt'
 
 WDAY = dict(zip(range(7), read_from_file(WDAY_FILE)))
 HOUR = dict(zip(range(24), read_from_file(HOUR_FILE)))
-NOUNS, ADJECTIVES, CONNECTORS, BLESSINGS = map(read_from_file, [NOUNS_FILE, ADJECTIVES_FILE, CONNECTORS_FILE, BLESSINGS_FILE])
+NOUNS, ADJECTIVES, CONNECTORS, BLESSINGS, ENDINGS = map(read_from_file, [NOUNS_FILE, ADJECTIVES_FILE, CONNECTORS_FILE, BLESSINGS_FILE, ENDINGS_FILE])
     
