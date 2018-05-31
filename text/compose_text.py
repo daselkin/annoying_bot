@@ -2,13 +2,8 @@
 import codecs
 import random
 
-from read_dictionaries import WDAY, HOUR, NOUNS, ADJECTIVES, CONNECTORS, BLESSINGS
-
-
-MAX_ADJECTIVES = 3
-MAX_NOUNS = 3
-
-BLESSING_CHANCE = 4
+from read_dictionaries import WDAY, HOUR, NOUNS, ADJECTIVES, CONNECTORS, BLESSINGS, ENDINGS
+from params import MAX_ADJECTIVES, MAX_NOUNS, BLESSING_CHANCE
 
 def conjunct(lst):
     if len(lst) == 0:
@@ -29,15 +24,16 @@ def annoying_text(tm):
     num_goodstuff = random.randint( (0 if num_epitephs > 0 else 1), MAX_NOUNS)
     has_blessing = random.randint(1, BLESSING_CHANCE) == 1
     
-    return u'{time}{linebreak0}{epiteph}{linebreak1}{of}{goodstuff}{linebreak2}{blessing}'.format(
+    return u'{time}{linebreak0}{epiteph}{linebreak1}{of}{goodstuff}{linebreak2}{blessing}{ending}'.format(
         time=time_txt,
         linebreak0=u' ' if num_epitephs > 0 else u'',
         epiteph=conjunct(random.sample(ADJECTIVES, num_epitephs)),
         linebreak1='\n' if num_epitephs > 0 else u' ',
         of=random.choice(CONNECTORS) if num_goodstuff > 0 else u'',
         goodstuff=conjunct(random.sample(NOUNS, num_goodstuff)),
-        linebreak2='\n' if num_goodstuff > 0 else u' ',
-        blessing=random.choice(BLESSINGS) if has_blessing else u''
+        linebreak2='\n' if (num_goodstuff > 0 and has_blessing) else u' ',
+        blessing=random.choice(BLESSINGS) if has_blessing else u'',
+        ending=random.choice(ENDINGS)
         )
 
 
