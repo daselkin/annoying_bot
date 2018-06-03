@@ -1,4 +1,4 @@
-from wikimedia_image import get_wikimedia_jpg_url
+from pixbay_image import get_pixbay_url
 
 import requests
 import shutil
@@ -12,5 +12,5 @@ def save_image(url, path):
 
 
 def get_image(path):
-    save_image(get_wikimedia_jpg_url(), path)
+    save_image(get_pixbay_url(), path)
     
