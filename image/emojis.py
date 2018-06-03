@@ -5,7 +5,8 @@ from PIL import ImageDraw, ImageFont
 
 CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 ALIGNS = ['left', 'right', 'center']
-COLORS = [(0,0,0), (255, 255, 255), (255, 51, 51)]
+COLORS_RGB = [(0,0,0), (255, 255, 255), (255, 51, 51)]
+COLORS_BW = [0, 255]
 
 def emoji_str():
     return u''.join(random.choice(CHARS) for i in range(random.randint(1,MAX_EMOJI_LENGTH)))
@@ -13,8 +14,8 @@ def emoji_str():
 def align():
     return random.choice(ALIGNS)
 
-def color():
-    return random.choice(COLORS)
+def color(rgb=True):
+    return random.choice(COLORS_RGB if rgb else COLORS_BW)
     
 
 def text_location(img, x_ratio, y_ratio):
@@ -29,8 +30,10 @@ def add_emojis_to_image(img):
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype(EMOJI_TYPEFACE, EMOJI_FONTSIZE)
 
-    if random.random() <= EMOJI_CHANCE:
-        draw.text(text_location(img, (0, 0.5), (0.5, 1)), emoji_str(), color(), font=font, align=align())
-
-    if random.random() <= EMOJI_CHANCE:
-        draw.text(text_location(img, (0.5, 1), (0.5, 1)), emoji_str(), color(), font=font, align=align())
+    for x_range in [(0, 0.5), (0.5, 1)]:
+        if random.random() <= EMOJI_CHANCE:
+            location = text_location(img, x_range, (0.5, 1))
+            try:
+                draw.text(location, emoji_str(), color(), font=font, align=align())
+            except:
+                draw.text(location, emoji_str(), color(rgb=False), font=font, align=align())
