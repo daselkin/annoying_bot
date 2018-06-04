@@ -8,6 +8,6 @@ IMAGE_SIZE = 320
 
 
 EMOJI_TYPEFACE = 'emoji_fonts/{}'.format(random.choice(os.listdir('emoji_fonts')))
-EMOJI_FONTSIZE = random.randint(18, 52)
+EMOJI_FONTSIZE = random.randint(45, 78)
 MAX_EMOJI_LENGTH = 3
 EMOJI_CHANCE = 0.75
