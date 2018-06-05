@@ -1,7 +1,7 @@
 from itertools import *
 from math import sqrt
 
-GRADIENT = [0, 128, 255]
+GRADIENT = [15, 128, 240]
 
 def best_complement_color(pixels):
     if type(pixels[0][1]) == int:

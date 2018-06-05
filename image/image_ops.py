@@ -8,10 +8,11 @@ def resize_and_caption(input_path, text, output_path):
     "Open"
     img = Image.open(input_path)
     img = img.convert(mode='RGB')
-    "Resize"
-    img = resize(img)
 
     color = best_complement_color(img.getcolors(img.size[0] * img.size[1]/2))
+    
+    "Resize"
+    img = resize(img)
     
     "Draw text"
     caption(img, text, color)
